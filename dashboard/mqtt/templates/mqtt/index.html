@@ -1,0 +1,19 @@
+{% if latest_light_value %}
+<table>
+  <tr>
+    <th>Topic</th>
+    <th>Value</th>
+    <th>time_publish</th>
+  </tr>
+  {% for x in latest_light_value %}
+  <tr>
+    <td>{{ x.topic }}</td>
+    <td>{{ x.value }}</td>
+    <td>{{ x.pub_date }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% else %}
+<p>No sensor value are available.</p>
+{% endif %}
