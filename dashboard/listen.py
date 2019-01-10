@@ -1,3 +1,4 @@
+import datetime
 import paho.mqtt.client as mqtt
 import sqlite3
 conn = sqlite3.connect('db.sqlite3')
@@ -15,10 +16,11 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
+    x = datetime.datetime.now()
     print(msg.topic)
     print(str(msg.payload))
     #c.execute('insert into mqtt_sensors values (?,?,?)', (msg.topic,str(msg.payload),""))
-    c.execute('insert into mqtt_sensors ("topic","value","pub_date") values (?,?,?)', (msg.topic,str(msg.payload),""))
+    c.execute('insert into mqtt_sensors ("topic","value","pub_date") values (?,?,?)', (msg.topic,str(msg.payload),x))
     conn.commit()
     #print(msg.topic+" "+str(msg.payload))
 
