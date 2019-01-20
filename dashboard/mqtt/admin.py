@@ -1,6 +1,10 @@
 from django.contrib import admin
-#from django.contrib.auth.models import Group
 from .models import Sensors
+#from django.contrib.auth.models import User, Group
+
+
+# admin.site.unregister(User)
+# admin.site.unregister(Group)
 
 
 class SnippetAdmin(admin.ModelAdmin):
@@ -9,9 +13,7 @@ class SnippetAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Sensors, SnippetAdmin)
-# admin.site.unregister(Group)
-admin.site.site_header = 'iot sensor dashboard'
-admin.site.index_title = 'sam mirkazemi'
-admin.site.site_title = 'salam :))'
-
+admin.site.site_header = 'sammirkazemi@outlook.com'
+admin.site.index_title = 'sam iot log system'
+admin.site.site_title = 'sammirkazemi@outlook.com'
 admin.site.disable_action('delete_selected')
