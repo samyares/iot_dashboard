@@ -9,6 +9,11 @@ def info(request):
     return HttpResponse("POWER BY SAM MIRKAZEMI (sammirkazemi@outlook.com)")
 
 
+def paho(request):
+    template = loader.get_template('paho/index.html')
+    return HttpResponse(template.render({}, request))
+
+
 def monitor(request):
     latest_light_value = Sensors.objects.order_by('-pub_date')[:2]
     template = loader.get_template('mqtt/index.html')
