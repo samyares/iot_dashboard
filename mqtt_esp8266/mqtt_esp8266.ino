@@ -14,6 +14,8 @@ int value = 0;
 int valueA = 0;
 int valueD = 0;
 int val = 0;
+int tempA = 0;
+int tempD = 0;
 
 void setup_wifi()
 {
@@ -104,20 +106,29 @@ void loop()
   client.loop();
 
   long now = millis();
-  if (now - lastMsg > 1000)
+  if (now - lastMsg > 500)
   {
     lastMsg = now;
     //++value;
     val = analogRead(0);
     valueA = map(val, 0, 1023, 100, 0);
     valueD = digitalRead(D0);
-    snprintf(msgA, 50, "%ld", valueA);
-    snprintf(msgD, 50, "%ld", valueD);
-    Serial.print("Brightness: ");
-    Serial.print(msgA);
-    Serial.print("  light: ");
-    Serial.println(msgD);
-    client.publish("brightness", msgA);
-    client.publish("light", msgD);
+    if (tempA != valueA || tempD != valueD){
+      tempA = valueA;
+      tempD = valueD;
+      snprintf(msgA, 50, "%ld", valueA);
+      snprintf(msgD, 50, "%ld", valueD);
+      Serial.print("Brightness: ");
+      Serial.print(msgA);
+      Serial.print("  light: ");
+      Serial.println(msgD);
+      client.publish("brightness", msgA);
+      client.publish("light", msgD);
+    }else{
+      tempA = valueA;
+      tempD = valueD;
+      Serial.println("freez");
+    }
+    
   }
 }
