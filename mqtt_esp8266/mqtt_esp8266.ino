@@ -109,8 +109,8 @@ void loop()
     lastMsg = now;
     //++value;
     val = analogRead(0);
-    valueA = map(val, 0, 1023, 0, 100);
-    valueD = digitalRead(0);
+    valueA = map(val, 0, 1023, 100, 0);
+    valueD = digitalRead(D0);
     snprintf(msgA, 50, "%ld", valueA);
     snprintf(msgD, 50, "%ld", valueD);
     Serial.print("Brightness: ");
