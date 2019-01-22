@@ -6,7 +6,7 @@ from .models import Sensors
 
 
 def info(request):
-    return HttpResponse("POWER BY SAM MIRKAZEMI (sammirkazemi@outlook.com)")
+    return HttpResponse("CREATED BY SAM MIRKAZEMI (sammirkazemi@outlook.com)")
 
 
 def paho(request):
